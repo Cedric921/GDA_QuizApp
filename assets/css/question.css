@@ -18,6 +18,8 @@ body {
 
 .container {
 	width: 25%;
+	min-width: 300px;
+	min-height: 450px;
 	height: 70%;
 	padding: 40px 40px;
 	background: #ffffff;
@@ -52,7 +54,7 @@ body {
 }
 
 .loginForm {
-	padding-top: 20px;
+	padding-top: 10px;
 	width: 100%;
 }
 
@@ -109,6 +111,47 @@ body {
 	width: 120px;
 }
 
+.progression {
+	padding-top: 20px;
+	width: 100%;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.progress-detail {
+	display: flex;
+	justify-content: space-between;
+}
+
+.progress-detail p {
+	font-size: 12px;
+	font-weight: 300;
+}
+
+progress {
+	width: 100%;
+	color: green;
+	/* background: green;  */
+	height: 6px;
+	border-radius: 5px;
+}
+
+.progress-bar {
+	border-radius: 2px;
+}
+
+.question-bloc {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+
+.question-detail {
+	width: 100%;
+}
 
 .result{
 	gap: 10px;

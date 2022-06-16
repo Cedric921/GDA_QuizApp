@@ -18,6 +18,8 @@ body {
 
 .container {
 	width: 25%;
+	min-width: 300px;
+	min-height: 450px;
 	height: 70%;
 	padding: 40px 40px;
 	background: #ffffff;

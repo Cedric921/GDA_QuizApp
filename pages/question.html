@@ -5,19 +5,30 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Quiz app</title>
-    <!-- <link rel="stylesheet" href="../assets/css/main.css"> -->
+		<!-- <link rel="stylesheet" href="../assets/css/main.css"> -->
 		<link rel="stylesheet" href="../assets/css/question.css" />
 	</head>
 	<body>
 		<div class="container" id="container">
 			<div class="question-bloc">
-				<p class="question detail">
+				<p class="question-detail">
 					Quel est le type d'un fichier javascript ?
-        </p>
-				<div class="prgression"></div>
+				</p>
+				<div class="progression">
+					<div class="progress-detail">
+            <p>Question 1/15</p>
+            <p>30</p>
+          </div>
+					<progress value="30" max="60" class="progress-bar"></progress>
+				</div>
 			</div>
 
-			<form action="./win.html" id="loginForm" class="loginForm" method="post">
+			<form
+				action="./win.html"
+				id="questionForm"
+				class="loginForm"
+				method="post"
+			>
 				<div class="form-group">
 					<input type="radio" name="nom" required />
 					<label for="nom">.Js</label>
