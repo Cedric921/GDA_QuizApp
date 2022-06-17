@@ -16,7 +16,10 @@ body {
 	background: linear-gradient(#8ed9eb, #85f6b8);
 }
 
-.container {
+.container-login,
+.container-question,
+.container-resultWin,
+.container-resultLost {
 	width: 25%;
 	min-width: 300px;
 	min-height: 450px;
@@ -30,8 +33,18 @@ body {
 	text-align: center;
 }
 
-.container > h1
-{
+.container-sub-success ,
+.container-sub-fail {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 20px;
+}
+
+.container-login > h1 {
 	color: #555555;
 	font-size: 28px;
 	width: 100%;
@@ -39,12 +52,12 @@ body {
 	margin-bottom: 20px;
 	text-align: center;
 }
-.container > h4 {
-  text-align: center;
-  width: 100%;
+.container-login > h4 {
+	text-align: center;
+	width: 100%;
 }
 
-.container > p {
+.container-login > p {
 	font-style: normal;
 	font-weight: 300;
 	font-size: 14px;
@@ -68,11 +81,30 @@ body {
 	margin-bottom: 20px;
 }
 
+#questionForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form-group-question {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 20px;
+	border: 1px solid #dddddd;
+	margin: 10px 0;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
 /* .form-group label {
 	width: 100%;
 } */
 
-.form-group input {
+.form-group input[type='text'],
+.form-group input[type='email'] {
 	width: 100%;
 	margin: 5px 0;
 	padding: 10px;
@@ -81,11 +113,26 @@ body {
 	box-sizing: border-box;
 }
 
-.form-group input .withError {
-  border: 1px solid red;
+.form-group input[type='text'] .withError,
+.form-group input[type='text'] .withError {
+	border: 1px solid red;
 }
 
+.form-group-question:active,
+.form-group-question:hover {
+	border: 2px solid green;
+	box-sizing: border-box;
+}
 
+.form-group-question input[type='radio'] {
+	margin-right: 10px;
+}
+
+.form-group-question input:checked,
+.form-group-question input:hover {
+	color: green;
+	border: green;
+}
 
 .form-validate {
 	display: flex;
@@ -101,9 +148,144 @@ body {
 	box-shadow: 0px 0px 5px gray;
 }
 
-
 .error-log {
-  color: red;
+	color: red;
 	font-size: 10px;
+}
+
+.error-name {
+	display: none;
+}
+
+.error-email {
+	display: none;
+}
+
+.progression {
+	padding-top: 20px;
+	width: 100%;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.progress-detail {
+	display: flex;
+	justify-content: space-between;
+}
+
+.progress-detail p {
+	font-size: 12px;
+	font-weight: 300;
+}
+
+progress {
+	width: 100%;
+	color: green;
+	/* background: green;  */
+	height: 6px;
+	border-radius: 5px;
+}
+
+.progress-bar {
+	border-radius: 2px;
+}
+
+.question-bloc {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.question-detail {
+	width: 100%;
+}
+
+.result {
+	gap: 10px;
+	align-items: center;
+}
+
+.name-result {
+	margin-bottom: 20px;
+}
+
+.email-result {
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+.circle-success {
+	width: 80px;
+	height: 80px;
+	border: 7px solid green;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+
+.circle-fail {
+	width: 80px;
+	height: 80px;
+	border: 7px solid #ff3838;
+	border-radius: 100px;
+	font-size: 50px;
+	color: #ff3838;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.circle-success img,
+.circle-fail img {
+	width: 80%;
+}
+.btn-to-home {
+	padding: 10px 40px;
+	color: #ffffff;
+	border: 1px solid #0880d6;
+	box-shadow: 0px 0px 5px gray;
+	background-color: #0880d6;
+	text-decoration: none;
+}
+
+.form-validate .next {
+	background-color: #028a3d6b;
+	border: 1px solid #028a3d6b;
+	box-shadow: 0px 0px 5px gray;
+	color: #ffffff;
+	padding: 10px 20px;
+	margin: 5px;
+	box-sizing: border-box;
+	font-size: 12px;
+	width: 120px;
+}
+
+.form-validate .exit {
+	background-color: #ec880c;
+	border: 1px solid #ec880c;
+	box-shadow: 0px 0px 5px gray;
+	color: #ffffff;
+	padding: 10px 30px;
+	margin: 5px;
+	box-sizing: border-box;
+	font-size: 12px;
+	text-decoration: none;
+	width: 120px;
+}
+
+.container-login {
+	display: block;
+}
+.container-question {
+	display: none;
+}
+.container-resultWin {
+	display: none;
+}
+.container-resultLost {
 	display: none;
 }
