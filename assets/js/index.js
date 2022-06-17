@@ -19,14 +19,27 @@ loginForm.addEventListener('submit', (e) => {
 	// first we take user data
 	const name = nameInput.value;
 	const email = emailInput.value;
-	console.log(name, email);
+	let error = false;
 
-	//we check if use data is not empty
-	if (!name.length >= 3) {
+	console.log(name);
+
+	//we check if the name of user is not empty is not empty
+	if (name.length <= 3) {
 		errorNameOutput.style.display = 'block';
-	} else if (!email.length >= 5) {
-		errorEmailOutput.style.display = 'block';
+		error = true;
 	} else {
+		errorNameOutput.style.display = 'none';
+	}
+
+	//we check if the email of user is not empty is not empty
+	if (email.length <= 5) {
+		errorEmailOutput.style.display = 'block';
+		error = true;
+	} else {
+		errorEmailOutput.style.display = 'none';
+	}
+
+	if (!error) {
 		//if correct we display question page
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
