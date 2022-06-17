@@ -20,19 +20,37 @@ const assertions = document.getElementById('assertions');
 
 const user = new User('', '');
 let questionId = 0;
-let timer = 60;
+let timer = 10;
+let selectedResponse;
 
 const counter = () => {
-	timer--;
 	if (timer > 0) {
 		console.log(timer);
-    progressBar.value = timer;
-    times.textContent = timer;
+		progressBar.value = timer;
+		times.textContent = timer;
+		timer--;
 		setTimeout(counter, 1000);
 	} else {
+		// clearTimeout();
 		addPoint();
-		resultHandler();
-		return timer;
+		timer = 10;
+		questionId++;
+		if (questions[questionId]) {
+			questionHandler(questionId);
+			counter();
+		} else {
+			resultHandler();
+			return;
+		}
+	}
+};
+
+const checkResponse = () => {
+	if (questions[questionId]) {
+		if (questions[questionId].answer == selectedResponse) {
+			user.increase();
+			console.log(user, selectedResponse);
+		}
 	}
 };
 
@@ -52,42 +70,57 @@ loginForm.addEventListener('submit', (e) => {
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
 		questionHandler(questionId);
+		counter();
 	}
 });
 
-questionForm.addEventListener('click', (e) => {
-  e.preventDefault();
-  //we init timer
-  timer = 60
+//when user valid a response
+questionForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+
+	//we init timer
+	timer = 60;
 	questionId++;
-	if (timer > 0) {
-		questionHandler(questionId);
-  } else {
-    addPoint()
-		resultHandler();
+
+	questionHandler(questionId);
+
+	const responseInput = document.querySelectorAll('input[name="response"]');
+	for (const radioButton of responseInput) {
+		if (radioButton.checked) {
+			selectedResponse = radioButton.value;
+			if (questions[questionId]) {
+				if (questions[questionId].answer == selectedResponse) {
+					user.increase();
+					console.log(user, selectedResponse);
+				}
+			}
+			break;
+		}
 	}
+	// show the output:
+	addPoint();
 });
 
 const questionHandler = (id) => {
 	if (questions[id]) {
-		counter();
 		//we display first a question
 		assertions.innerHTML = '';
 		questionDetail.textContent = questions[id].titre;
 		questions[id].assertions.forEach((ass) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
-        <input type="radio" name="response" value="${ass}" required />
-        <label for="nom">${ass}</label>
+      <input type="radio" name="response" class="responseInput" value="${ass}" required />
+      <label for="response">${ass}</label>
       </div>`;
 		});
+		checkResponse();
 	} else {
-		resultWinPage.style.display = 'block';
-		loginPage.style.display = 'none';
-		questionPage.style.display = 'none';
+		resultHandler();
+		timer = 0;
 	}
 };
 
+//to chnage the component
 const resultHandler = () => {
 	resultWinPage.style.display = 'none';
 	resultLostPage.style.display = 'block';
@@ -97,8 +130,8 @@ const resultHandler = () => {
 
 const addPoint = () => {
 	if (timer <= 0) {
+		checkResponse();
 		console.log(user);
-  } else {
-    //check use response
-  }
+	} else {
+	}
 };
