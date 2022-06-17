@@ -11,37 +11,23 @@ const emailInput = document.getElementById('email');
 const errorNameOutput = document.querySelector('.error-name');
 const errorEmailOutput = document.querySelector('.error-email');
 
-/**___________LOGIN PAGE LOGIC________ */
+const user = new User('', '');
 
+/** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
 	e.preventDefault();
-
 	// first we take user data
 	const name = nameInput.value;
 	const email = emailInput.value;
-	let error = false;
 
-	console.log(name);
-
-	//we check if the name of user is not empty is not empty
-	if (name.length <= 3) {
-		errorNameOutput.style.display = 'block';
-		error = true;
-	} else {
-		errorNameOutput.style.display = 'none';
-	}
-
-	//we check if the email of user is not empty is not empty
-	if (email.length <= 5) {
-		errorEmailOutput.style.display = 'block';
-		error = true;
-	} else {
-		errorEmailOutput.style.display = 'none';
-	}
+	const error = validate(name, email);
 
 	if (!error) {
+		user.name = name;
+		user.email = email;
 		//if correct we display question page
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
 	}
+	console.log(user);
 });
