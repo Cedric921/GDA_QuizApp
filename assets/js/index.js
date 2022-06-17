@@ -20,6 +20,20 @@ const assertions = document.getElementById('assertions');
 
 const user = new User('', '');
 let questionId = 0;
+let timer = 60;
+
+
+
+const counter = () => {
+	console.log(timer);
+	timer--;
+	if (timer > 0) {
+	} else {
+		return timer;
+	}
+};
+
+
 
 /** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
@@ -43,8 +57,16 @@ loginForm.addEventListener('submit', (e) => {
 
 questionForm.addEventListener('click', (e) => {
 	e.preventDefault();
-	questionId++;
-	questionHandler(questionId);
+	console.log(e);
+  questionId++;
+  setTimeout(counter, 1000)
+  if (timer > 0) {
+    questionHandler(questionId);
+    console.log(timer)
+  } else {
+     resultHandler();
+  }
+	
 });
 
 const questionHandler = (id) => {
@@ -53,10 +75,11 @@ const questionHandler = (id) => {
 		assertions.innerHTML = '';
 		questionDetail.textContent = questions[id].titre;
 		questions[id].assertions.forEach((ass) => {
-			assertions.innerHTML += `<div class="form-group-question">
-            <input type="radio" name="nom" value="${ass}" required />
-            <label for="nom">${ass}</label>
-          </div>`;
+			assertions.innerHTML += `
+      <div class="form-group-question">
+        <input type="radio" name="response" value="${ass}" required />
+        <label for="nom">${ass}</label>
+      </div>`;
 		});
 	} else {
 		resultWinPage.style.display = 'block';
@@ -64,3 +87,9 @@ const questionHandler = (id) => {
 		questionPage.style.display = 'none';
 	}
 };
+
+const resultHandler = () => {
+  resultWinPage.style.display = 'block';
+		loginPage.style.display = 'none';
+		questionPage.style.display = 'none';
+}
