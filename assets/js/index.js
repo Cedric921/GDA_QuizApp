@@ -14,7 +14,7 @@ const errorEmailOutput = document.querySelector('.error-email');
 /** ________ QUESTION PAGE ELEMENTS________ */
 const questionDetail = document.getElementById('question-detail');
 const times = document.getElementById('times');
-const progressBar = document.querySelector('progress-bar');
+const progressBar = document.querySelector('.progress-bar');
 const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
 
@@ -22,18 +22,19 @@ const user = new User('', '');
 let questionId = 0;
 let timer = 60;
 
-
-
 const counter = () => {
-	console.log(timer);
 	timer--;
 	if (timer > 0) {
+		console.log(timer);
+    progressBar.value = timer;
+    times.textContent = timer;
+		setTimeout(counter, 1000);
 	} else {
+		addPoint();
+		resultHandler();
 		return timer;
 	}
 };
-
-
 
 /** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
@@ -52,25 +53,24 @@ loginForm.addEventListener('submit', (e) => {
 		questionPage.style.display = 'block';
 		questionHandler(questionId);
 	}
-	console.log(user);
 });
 
 questionForm.addEventListener('click', (e) => {
-	e.preventDefault();
-	console.log(e);
-  questionId++;
-  setTimeout(counter, 1000)
-  if (timer > 0) {
-    questionHandler(questionId);
-    console.log(timer)
+  e.preventDefault();
+  //we init timer
+  timer = 60
+	questionId++;
+	if (timer > 0) {
+		questionHandler(questionId);
   } else {
-     resultHandler();
-  }
-	
+    addPoint()
+		resultHandler();
+	}
 });
 
 const questionHandler = (id) => {
 	if (questions[id]) {
+		counter();
 		//we display first a question
 		assertions.innerHTML = '';
 		questionDetail.textContent = questions[id].titre;
@@ -89,7 +89,16 @@ const questionHandler = (id) => {
 };
 
 const resultHandler = () => {
-  resultWinPage.style.display = 'block';
-		loginPage.style.display = 'none';
-		questionPage.style.display = 'none';
-}
+	resultWinPage.style.display = 'none';
+	resultLostPage.style.display = 'block';
+	loginPage.style.display = 'none';
+	questionPage.style.display = 'none';
+};
+
+const addPoint = () => {
+	if (timer <= 0) {
+		console.log(user);
+  } else {
+    //check use response
+  }
+};
