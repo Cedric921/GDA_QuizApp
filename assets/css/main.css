@@ -16,7 +16,10 @@ body {
 	background: linear-gradient(#8ed9eb, #85f6b8);
 }
 
-.container {
+.container-login,
+.container-question,
+.container-resultWin,
+.container-resultLost {
 	width: 25%;
 	min-width: 300px;
 	min-height: 450px;
@@ -30,7 +33,18 @@ body {
 	text-align: center;
 }
 
-.container > h1 {
+.container-sub-success ,
+.container-sub-fail {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 20px;
+}
+
+.container-login > h1 {
 	color: #555555;
 	font-size: 28px;
 	width: 100%;
@@ -38,12 +52,12 @@ body {
 	margin-bottom: 20px;
 	text-align: center;
 }
-.container > h4 {
+.container-login > h4 {
 	text-align: center;
 	width: 100%;
 }
 
-.container > p {
+.container-login > p {
 	font-style: normal;
 	font-weight: 300;
 	font-size: 14px;
@@ -131,6 +145,13 @@ body {
 .error-log {
 	color: red;
 	font-size: 10px;
+}
+
+.error-name {
+	display: none;
+}
+
+.error-email {
 	display: none;
 }
 
@@ -197,7 +218,9 @@ progress {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: auto;
 }
+
 .circle-fail {
 	width: 80px;
 	height: 80px;
@@ -246,4 +269,17 @@ progress {
 	font-size: 12px;
 	text-decoration: none;
 	width: 120px;
+}
+
+.container-login {
+	display: block;
+}
+.container-question {
+	display: none;
+}
+.container-resultWin {
+	display: none;
+}
+.container-resultLost {
+	display: none;
 }
