@@ -1,10 +1,10 @@
+/** _________  PAGES,  COMPONENTS ________ */
 const loginPage = document.getElementById('container-login');
 const questionPage = document.getElementById('container-questions');
-const resultWinPage = document.getElementById('container-resultWin');
+const resultPage = document.getElementById('container-result');
 const resultLostPage = document.getElementById('container-resultLost');
 
 /**___________LOGIN PAGE ELEMENTS________ */
-/** Login events */
 const loginForm = document.getElementById('loginForm');
 const nameInput = document.getElementById('nom');
 const emailInput = document.getElementById('email');
@@ -18,6 +18,14 @@ const progressBar = document.querySelector('.progress-bar');
 const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
 
+/** ________  RESULT PAGE ELEMENTS */
+const circleSuccess = document.querySelector('.circle-success');
+const circleFail = document.querySelector('.circle-fail');
+const nameResult = document.getElementById('name-result');
+const emailResult = document.getElementById('email-result');
+const pointsResult = document.getElementById('points-result');
+const maxResult = document.getElementById('max-result');
+
 const user = new User('', '');
 let questionId = 0;
 let timer = 60;
@@ -25,7 +33,6 @@ let selectedResponse;
 
 const counter = () => {
 	if (timer > 0) {
-		console.log(timer);
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
@@ -33,7 +40,6 @@ const counter = () => {
 	} else {
 		timer = 60;
 		questionId++;
-		console.log(questionId, 'question change');
 		if (questions[questionId]) {
 			questionHandler(questionId);
 			counter();
@@ -56,11 +62,12 @@ loginForm.addEventListener('submit', (e) => {
 	if (!error) {
 		user.name = name;
 		user.email = email;
-		//if correct we display question page
+		nameResult.textContent = user.name;
+		emailResult.textContent = user.email;
+
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
 		questionHandler(questionId);
-		console.log(questionId, 'question load');
 		counter();
 	}
 });
@@ -73,7 +80,6 @@ questionForm.addEventListener('submit', (e) => {
 	timer = 60;
 	checkResponse();
 	questionId++;
-	console.log(questionId, 'question click');
 
 	questionHandler(questionId);
 	// show the output:
@@ -97,14 +103,6 @@ const questionHandler = (id) => {
 	}
 };
 
-//to chnage the component
-const resultHandler = () => {
-	resultWinPage.style.display = 'none';
-	resultLostPage.style.display = 'block';
-	loginPage.style.display = 'none';
-	questionPage.style.display = 'none';
-};
-
 const checkResponse = () => {
 	const responseInput = document.querySelectorAll('input[name="response"]');
 	for (const radioButton of responseInput) {
@@ -119,4 +117,24 @@ const checkResponse = () => {
 		}
 	}
 	console.log(user, questions[questionId], selectedResponse);
+};
+
+//to chnage the component
+const resultHandler = () => {
+	loginPage.style.display = 'none';
+	questionPage.style.display = 'none';
+	resultPage.style.display = 'block';
+
+	let max = questions.length;
+	let points = user.point;
+	pointsResult.textContent = points;
+	maxResult.textContent = max;
+
+	if (points >= max / 2) {
+		circleFail.style.display = 'none';
+		circleSuccess.style.display = 'block';
+	} else {
+		circleFail.style.display = 'block';
+		circleSuccess.style.display = 'none';
+	}
 };
