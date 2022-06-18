@@ -36,7 +36,7 @@ const counter = () => {
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
-		setTimeout(counter, 300);
+		setTimeout(counter, 1000);
 	} else {
 		timer = 60;
 		questionId++;
