@@ -17,6 +17,7 @@ const times = document.getElementById('times');
 const progressBar = document.querySelector('.progress-bar');
 const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
+const questionIdHandler = document.getElementById('questionId');
 
 /** ________  RESULT PAGE ELEMENTS */
 const circleSuccess = document.querySelector('.circle-success');
@@ -36,7 +37,7 @@ const counter = () => {
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
-		setTimeout(counter, 300);
+		setTimeout(counter, 1000);
 	} else {
 		timer = 60;
 		questionId++;
@@ -90,6 +91,8 @@ const questionHandler = (id) => {
 		//we display first a question
 		assertions.innerHTML = '';
 		questionDetail.textContent = questions[id].titre;
+		
+		questionIdHandler.textContent = questions[id].id;
 		questions[id].assertions.forEach((ass) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
