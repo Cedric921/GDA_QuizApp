@@ -13,9 +13,9 @@ const questions = [
 	},
 	{
 		id: 3,
-		titre: 'React js is a',
+		titre: 'React js est un ',
 		answer: 'library',
-		assertions: ['language', 'framework', 'library', ''],
+		assertions: ['language', 'framework', 'library', 'IDE'],
 	},
 	{
 		id: 4,
@@ -85,8 +85,8 @@ const questions = [
 		id: 12,
 		titre:
 			'Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2?',
-		answer: 'vrai',
-		assertions: ['vrai', 'faux'],
+		answer: 'if (a != 2)',
+		assertions: ['if a <> 2', 'if (a != 2)', 'if a =! 2 then', 'if (a <> 2)'],
 	},
 	{
 		id: 13,
@@ -117,3 +117,5 @@ const questions = [
 		assertions: ['Breind Eich', 'Cedric karungu', 'Bill Gate', 'Steve Jobs'],
 	},
 ];
+
+//by cedric karungu
