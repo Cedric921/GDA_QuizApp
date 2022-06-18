@@ -20,7 +20,7 @@ const assertions = document.getElementById('assertions');
 
 const user = new User('', '');
 let questionId = 0;
-let timer = 10;
+let timer = 60;
 let selectedResponse;
 
 const counter = () => {
@@ -29,27 +29,17 @@ const counter = () => {
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
-		setTimeout(counter, 1000);
+		setTimeout(counter, 300);
 	} else {
-		// clearTimeout();
-		addPoint();
-		timer = 10;
+		timer = 60;
 		questionId++;
+		console.log(questionId, 'question change');
 		if (questions[questionId]) {
 			questionHandler(questionId);
 			counter();
 		} else {
 			resultHandler();
 			return;
-		}
-	}
-};
-
-const checkResponse = () => {
-	if (questions[questionId]) {
-		if (questions[questionId].answer == selectedResponse) {
-			user.increase();
-			console.log(user, selectedResponse);
 		}
 	}
 };
@@ -70,6 +60,7 @@ loginForm.addEventListener('submit', (e) => {
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
 		questionHandler(questionId);
+		console.log(questionId, 'question load');
 		counter();
 	}
 });
@@ -78,27 +69,14 @@ loginForm.addEventListener('submit', (e) => {
 questionForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	//we init timer
+	// //we init timer
 	timer = 60;
+	checkResponse();
 	questionId++;
+	console.log(questionId, 'question click');
 
 	questionHandler(questionId);
-
-	const responseInput = document.querySelectorAll('input[name="response"]');
-	for (const radioButton of responseInput) {
-		if (radioButton.checked) {
-			selectedResponse = radioButton.value;
-			if (questions[questionId]) {
-				if (questions[questionId].answer == selectedResponse) {
-					user.increase();
-					console.log(user, selectedResponse);
-				}
-			}
-			break;
-		}
-	}
 	// show the output:
-	addPoint();
 });
 
 const questionHandler = (id) => {
@@ -113,7 +91,6 @@ const questionHandler = (id) => {
       <label for="response">${ass}</label>
       </div>`;
 		});
-		checkResponse();
 	} else {
 		resultHandler();
 		timer = 0;
@@ -128,10 +105,18 @@ const resultHandler = () => {
 	questionPage.style.display = 'none';
 };
 
-const addPoint = () => {
-	if (timer <= 0) {
-		checkResponse();
-		console.log(user);
-	} else {
+const checkResponse = () => {
+	const responseInput = document.querySelectorAll('input[name="response"]');
+	for (const radioButton of responseInput) {
+		if (radioButton.checked) {
+			selectedResponse = radioButton.value;
+			if (questions[questionId]) {
+				if (questions[questionId].answer == selectedResponse) {
+					user.increase();
+				}
+			}
+			break;
+		}
 	}
+	console.log(user, questions[questionId], selectedResponse);
 };
