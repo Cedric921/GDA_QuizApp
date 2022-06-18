@@ -1,10 +1,10 @@
+/** _________  PAGES,  COMPONENTS ________ */
 const loginPage = document.getElementById('container-login');
 const questionPage = document.getElementById('container-questions');
-const resultWinPage = document.getElementById('container-resultWin');
+const resultPage = document.getElementById('container-result');
 const resultLostPage = document.getElementById('container-resultLost');
 
 /**___________LOGIN PAGE ELEMENTS________ */
-/** Login events */
 const loginForm = document.getElementById('loginForm');
 const nameInput = document.getElementById('nom');
 const emailInput = document.getElementById('email');
@@ -14,26 +14,41 @@ const errorEmailOutput = document.querySelector('.error-email');
 /** ________ QUESTION PAGE ELEMENTS________ */
 const questionDetail = document.getElementById('question-detail');
 const times = document.getElementById('times');
-const progressBar = document.querySelector('progress-bar');
+const progressBar = document.querySelector('.progress-bar');
 const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
+
+/** ________  RESULT PAGE ELEMENTS */
+const circleSuccess = document.querySelector('.circle-success');
+const circleFail = document.querySelector('.circle-fail');
+const nameResult = document.getElementById('name-result');
+const emailResult = document.getElementById('email-result');
+const pointsResult = document.getElementById('points-result');
+const maxResult = document.getElementById('max-result');
 
 const user = new User('', '');
 let questionId = 0;
 let timer = 60;
-
-
+let selectedResponse;
 
 const counter = () => {
-	console.log(timer);
-	timer--;
 	if (timer > 0) {
+		progressBar.value = timer;
+		times.textContent = timer;
+		timer--;
+		setTimeout(counter, 300);
 	} else {
-		return timer;
+		timer = 60;
+		questionId++;
+		if (questions[questionId]) {
+			questionHandler(questionId);
+			counter();
+		} else {
+			resultHandler();
+			return;
+		}
 	}
 };
-
-
 
 /** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
@@ -47,26 +62,27 @@ loginForm.addEventListener('submit', (e) => {
 	if (!error) {
 		user.name = name;
 		user.email = email;
-		//if correct we display question page
+		nameResult.textContent = user.name;
+		emailResult.textContent = user.email;
+
 		loginPage.style.display = 'none';
 		questionPage.style.display = 'block';
 		questionHandler(questionId);
+		counter();
 	}
-	console.log(user);
 });
 
-questionForm.addEventListener('click', (e) => {
+//when user valid a response
+questionForm.addEventListener('submit', (e) => {
 	e.preventDefault();
-	console.log(e);
-  questionId++;
-  setTimeout(counter, 1000)
-  if (timer > 0) {
-    questionHandler(questionId);
-    console.log(timer)
-  } else {
-     resultHandler();
-  }
-	
+
+	// //we init timer
+	timer = 60;
+	checkResponse();
+	questionId++;
+
+	questionHandler(questionId);
+	// show the output:
 });
 
 const questionHandler = (id) => {
@@ -77,19 +93,48 @@ const questionHandler = (id) => {
 		questions[id].assertions.forEach((ass) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
-        <input type="radio" name="response" value="${ass}" required />
-        <label for="nom">${ass}</label>
+      <input type="radio" name="response" class="responseInput" value="${ass}" required />
+      <label for="response">${ass}</label>
       </div>`;
 		});
 	} else {
-		resultWinPage.style.display = 'block';
-		loginPage.style.display = 'none';
-		questionPage.style.display = 'none';
+		resultHandler();
+		timer = 0;
 	}
 };
 
+const checkResponse = () => {
+	const responseInput = document.querySelectorAll('input[name="response"]');
+	for (const radioButton of responseInput) {
+		if (radioButton.checked) {
+			selectedResponse = radioButton.value;
+			if (questions[questionId]) {
+				if (questions[questionId].answer == selectedResponse) {
+					user.increase();
+				}
+			}
+			break;
+		}
+	}
+	console.log(user, questions[questionId], selectedResponse);
+};
+
+//to chnage the component
 const resultHandler = () => {
-  resultWinPage.style.display = 'block';
-		loginPage.style.display = 'none';
-		questionPage.style.display = 'none';
-}
+	loginPage.style.display = 'none';
+	questionPage.style.display = 'none';
+	resultPage.style.display = 'block';
+
+	let max = questions.length;
+	let points = user.point;
+	pointsResult.textContent = points;
+	maxResult.textContent = max;
+
+	if (points >= max / 2) {
+		circleFail.style.display = 'none';
+		circleSuccess.style.display = 'block';
+	} else {
+		circleFail.style.display = 'block';
+		circleSuccess.style.display = 'none';
+	}
+};

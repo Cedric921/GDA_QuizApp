@@ -20,11 +20,7 @@
 				nous avons spécialement sélectionnées pour vous. <br />
 				C'est fun et c'est gratuit.
 			</p>
-			<form
-				action="/"
-				id="loginForm"
-				class="loginForm"
-			>
+			<form action="/" id="loginForm" class="loginForm">
 				<div class="form-group">
 					<label for="nom">Nom</label>
 					<input type="text" name="nom" id="nom" required />
@@ -66,27 +62,8 @@
 				class="loginForm"
 				method="post"
 			>
-			<div id="assertions"></div>
-				<!-- <div class="form-group-question">
-					<input type="radio" name="nom" required />
-					<label for="nom">.Js</label>
-				</div>
-				<div class="form-group-question">
-					<input type="radio" name="nom" required />
-					<label for="email">.cs</label>
-				</div>
-				<div class="form-group-question">
-					<input type="radio" name="nom" required />
-					<label for="nom">.jsx</label>
-				</div>
-				<div class="form-group-question">
-					<input type="radio" name="nom" required />
-					<label for="email">.jar</label>
-				</div>
-				<div class="form-group-question">
-					<input type="radio" name="nom" required />
-					<label for="email">Email</label>
-				</div> -->
+				<div id="assertions"></div>
+
 				<div class="form-validate">
 					<a href="../index.html" class="exit">Quitter</a>
 					<button type="submit" class="next">Suivant</button>
@@ -95,30 +72,21 @@
 		</div>
 
 		<!-- win -->
-		<div class="container-resultWin" id="container-resultWin">
+		<div class="container-resultWin" id="container-result">
 			<div class="container-sub-success">
-				<h2 class="name-result">Cedric</h2>
-				<h5 class="email-result">ckarungu921@gmail.com</h5>
+				<h2 class="name-result" id="name-result"></h2>
+				<h5 class="email-result" id="email-result"></h5>
 
 				<div class="circle-success">
-					<img src="../assets/images/bx-check.svg" alt="" />
+					<img src="../assets/images/bx-check.svg" alt="sucess" />
 				</div>
-
-				<p class="point">14/15</p>
-				<a href="../index.html" class="btn-to-home">accueil</a>
-			</div>
-		</div>
-
-		<!-- lost -->
-		<div class="container-resultLost result" id="container-resultLost">
-			<div class="container-sub-fail">
-				<h2 class="name-result">Cedric</h2>
-				<h5 class="email-result">ckarungu921@gmail.com</h5>
-
 				<div class="circle-fail">
 					<img src="../assets/images/bx-x.svg" alt="" />
 				</div>
-				<p class="point">2/15</p>
+
+				<p class="point">
+					<span id="points-result"></span> / <span id="max-result"></span>
+				</p>
 				<a href="../index.html" class="btn-to-home">accueil</a>
 			</div>
 		</div>
