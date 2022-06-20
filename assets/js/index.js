@@ -18,6 +18,7 @@ const progressBar = document.querySelector('.progress-bar');
 const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
 const questionIdHandler = document.getElementById('questionId');
+const nextBtn = document.getElementById('next');
 
 /** ________  RESULT PAGE ELEMENTS */
 const circleSuccess = document.querySelector('.circle-success');
@@ -31,6 +32,9 @@ const user = new User('', '');
 let questionId = 0;
 let timer = 60;
 let selectedResponse;
+let isChecked = false;
+
+console.log(nextBtn);
 
 const counter = () => {
 	if (timer > 0) {
@@ -90,16 +94,27 @@ const questionHandler = (id) => {
 	if (questions[id]) {
 		//we display first a question
 		assertions.innerHTML = '';
+		nextBtn.disabled = true;
+		nextBtn.style.backgroundColor = '#028a3d6b';
 		questionDetail.textContent = questions[id].titre;
-		
+
 		questionIdHandler.textContent = questions[id].id;
 		questions[id].assertions.forEach((ass) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
-      <input type="radio" name="response" class="responseInput" value="${ass}" required />
-      <label for="response">${ass}</label>
+      <input type="radio" name="response" id="response${ass}" class="responseInput" value="${ass}" required />
+      <label for="response${ass}">${ass}</label>
       </div>`;
 		});
+
+		const responseInput = document.querySelectorAll('input[name="response"]');
+		for (const radioButton of responseInput) {
+			console.log(radioButton);
+			radioButton.addEventListener('change', () => {
+				nextBtn.disabled = false;
+				nextBtn.style.backgroundColor = 'green';
+			});
+		}
 	} else {
 		resultHandler();
 		timer = 0;
