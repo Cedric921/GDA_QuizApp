@@ -4,7 +4,7 @@ const validate = (name, email) => {
 
 	console.log(name);
 	//we check if the name of user is not empty is not empty
-	if (name.length <= 3) {
+	if (name.length <= 2) {
 		errorNameOutput.style.display = 'block';
 		error = true;
 	} else {
