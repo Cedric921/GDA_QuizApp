@@ -19,6 +19,7 @@ const questionForm = document.getElementById('questionForm');
 const assertions = document.getElementById('assertions');
 const questionIdHandler = document.getElementById('questionId');
 const nextBtn = document.getElementById('next');
+const exitBtn = document.getElementById('exit');
 
 /** ________  RESULT PAGE ELEMENTS */
 const circleSuccess = document.querySelector('.circle-success');
@@ -55,6 +56,9 @@ const counter = () => {
 	}
 };
 
+// nameInput.addEventListener('change', checkName);
+emailInput.addEventListener('change', () => {});
+
 /** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -62,7 +66,9 @@ loginForm.addEventListener('submit', (e) => {
 	const name = nameInput.value;
 	const email = emailInput.value;
 
-	const error = validate(name, email);
+	
+
+	const error = validateSubmit(name, email);
 
 	if (!error) {
 		user.name = name;
@@ -91,6 +97,9 @@ questionForm.addEventListener('submit', (e) => {
 });
 
 const questionHandler = (id) => {
+	if (id === questions.length - 1) {
+		nextBtn.textContent = 'Terminer';
+	}
 	if (questions[id]) {
 		//we display first a question
 		assertions.innerHTML = '';
@@ -121,6 +130,10 @@ const questionHandler = (id) => {
 	}
 };
 
+exitBtn.addEventListener('click', () => {
+	resultHandler();
+});
+
 const checkResponse = () => {
 	const responseInput = document.querySelectorAll('input[name="response"]');
 	for (const radioButton of responseInput) {
@@ -150,9 +163,9 @@ const resultHandler = () => {
 
 	if (points >= max / 2) {
 		circleFail.style.display = 'none';
-		circleSuccess.style.display = 'block';
+		circleSuccess.style.display = 'flex';
 	} else {
-		circleFail.style.display = 'block';
+		circleFail.style.display = 'flex';
 		circleSuccess.style.display = 'none';
 	}
 };

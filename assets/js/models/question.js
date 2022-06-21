@@ -114,7 +114,7 @@ const questions = [
 		id: 15,
 		titre: "Le createur de javascript c'est",
 		answer: 'Breind Eich',
-		assertions: ['Breind Eich', 'Cedric karungu', 'Bill Gate', 'Steve Jobs'],
+		assertions: ['Breind Eich', 'cedric karungu', 'Gate', 'Jobs'],
 	},
 ];
 
