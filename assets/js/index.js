@@ -56,6 +56,9 @@ const counter = () => {
 	}
 };
 
+// nameInput.addEventListener('change', checkName);
+emailInput.addEventListener('change', () => {});
+
 /** Wait for event to login form */
 loginForm.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -63,7 +66,9 @@ loginForm.addEventListener('submit', (e) => {
 	const name = nameInput.value;
 	const email = emailInput.value;
 
-	const error = validate(name, email);
+	
+
+	const error = validateSubmit(name, email);
 
 	if (!error) {
 		user.name = name;
