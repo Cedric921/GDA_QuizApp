@@ -113,7 +113,7 @@ const questionHandler = (id) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
       <input type="radio" name="response" id="response${ass}" class="responseInput" value="${ass}" required />
-      <label for="response${ass}">${ass}</label>
+      <label class="reponseValue" for="response${ass}">${ass}</label>
       </div>`;
 		});
 
