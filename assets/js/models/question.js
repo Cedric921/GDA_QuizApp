@@ -19,7 +19,7 @@ const questions = [
 	},
 	{
 		id: 4,
-		titre: 'What is the correct HTML element for inserting a line break?',
+		titre: 'comment faire un retour a la ligne en html',
 		answer: 'br',
 		assertions: ['lb', 'break', 'br', 'bk'],
 	},
@@ -60,7 +60,7 @@ const questions = [
 	},
 	{
 		id: 9,
-		titre: 'Quel est le bon endroit pour insérer un code JavaScript?',
+		titre: 'Quel est le bon endroit pour insérer un code Js?',
 		answer: 'La section body',
 		assertions: [
 			'La section head',
@@ -71,7 +71,7 @@ const questions = [
 	},
 	{
 		id: 10,
-		titre: 'Le fichier externe de JavaScript doit contenir la balise script ?',
+		titre: 'Le fichier externe de Js doit contenir la balise script ?',
 		answer: 'faux',
 		assertions: ['vrai', 'faux'],
 	},
@@ -84,7 +84,7 @@ const questions = [
 	{
 		id: 12,
 		titre:
-			'Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2?',
+			'Comment écrire une condition IF pour vérifier si «a» n’est PAS égal à 2?',
 		answer: 'if (a != 2)',
 		assertions: ['if a <> 2', 'if (a != 2)', 'if a =! 2 then', 'if (a <> 2)'],
 	},
