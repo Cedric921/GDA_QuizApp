@@ -101,14 +101,9 @@ const questions = [
 	},
 	{
 		id: 14,
-		titre: 'Quelle est la syntaxe correcte pour vérifier la valeur de « c » ?',
-		answer: 'if (c == "XYZ") { } else { }',
-		assertions: [
-			'if (c == "XYZ") then { } else { }',
-			'if (c = "XYZ") then { } else { }',
-			'if (c == "XYZ") { } else { }',
-			'if (c = "XYZ") { } else { }',
-		],
+		titre: 'const c = 12; c += 1; Quelle est la  valeur de « c » ?',
+		answer: 'undefined',
+		assertions: ['12', 'undefined', '11', 'null'],
 	},
 	{
 		id: 15,

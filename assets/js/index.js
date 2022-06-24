@@ -42,8 +42,9 @@ const counter = () => {
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
-		setTimeout(counter, 1000);
+		setTimeout(counter, 100);
 	} else {
+		checkResponse()
 		timer = 60;
 		questionId++;
 		if (questions[questionId]) {
