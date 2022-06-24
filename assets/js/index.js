@@ -118,7 +118,6 @@ const questionHandler = (id) => {
 
 		const responseInput = document.querySelectorAll('input[name="response"]');
 		for (const radioButton of responseInput) {
-			console.log(radioButton);
 			radioButton.addEventListener('change', () => {
 				nextBtn.disabled = false;
 				nextBtn.style.backgroundColor = 'green';
