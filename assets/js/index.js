@@ -42,8 +42,9 @@ const counter = () => {
 		progressBar.value = timer;
 		times.textContent = timer;
 		timer--;
-		setTimeout(counter, 1000);
+		setTimeout(counter, 100);
 	} else {
+		checkResponse()
 		timer = 60;
 		questionId++;
 		if (questions[questionId]) {
@@ -112,13 +113,12 @@ const questionHandler = (id) => {
 			assertions.innerHTML += `
       <div class="form-group-question">
       <input type="radio" name="response" id="response${ass}" class="responseInput" value="${ass}" required />
-      <label for="response${ass}">${ass}</label>
+      <label class="reponseValue" for="response${ass}">${ass}</label>
       </div>`;
 		});
 
 		const responseInput = document.querySelectorAll('input[name="response"]');
 		for (const radioButton of responseInput) {
-			console.log(radioButton);
 			radioButton.addEventListener('change', () => {
 				nextBtn.disabled = false;
 				nextBtn.style.backgroundColor = 'green';

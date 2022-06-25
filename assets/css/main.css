@@ -5,6 +5,7 @@
 	padding: 0;
 	font-family: 'Inter', sans-serif;
 	color: #555555;
+	transition: ease-in border background display;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
 	text-align: center;
 }
 
-.container-sub-success ,
+.container-sub-success,
 .container-sub-fail {
 	margin-top: 50px;
 	display: flex;
@@ -99,6 +100,13 @@ body {
 	box-sizing: border-box;
 }
 
+.form-group-question:active,
+.form-group-question:hover {
+	border: 2px solid green;
+	box-sizing: border-box;
+	width: 100%;
+}
+
 /* .form-group label {
 	width: 100%;
 } */
@@ -109,7 +117,7 @@ body {
 	margin: 5px 0;
 	padding: 10px;
 	font-weight: 400;
-	border: 1px solid #dddddd;
+	border: 2px solid #dddddd;
 	box-sizing: border-box;
 }
 
@@ -118,20 +126,22 @@ body {
 	border: 1px solid red;
 }
 
-.form-group-question:active,
-.form-group-question:hover {
-	border: 2px solid green;
-	box-sizing: border-box;
-}
-
 .form-group-question input[type='radio'] {
 	margin-right: 10px;
+	width: 20px;
+	box-sizing: border-box;
 }
 
 .form-group-question input:checked,
 .form-group-question input:hover {
 	color: green;
 	border: green;
+}
+
+.reponseValue {
+	width: 90%;
+	text-align: left;
+	box-sizing: border-box;
 }
 
 .form-validate {
@@ -292,4 +302,20 @@ progress {
 
 /* vb */
 
+@media screen and (max-width: 385px) {
+	.container-login,
+	.container-question,
+	.container-resultWin,
+	.container-resultLost {
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 90vh;
+		margin: 0;
+		padding: 40px 10px;
+	}
 
+	#questionForm {
+		min-height: 150px;
+	}
+
+}
